@@ -1,0 +1,8 @@
+run_dir,dataset_name,model_name,scoring_method,primary_threshold_method,roc_auc,pr_auc,f1,precision,recall,threshold
+outputs_stage3\local_smoke_test\cic_ids2017_hybrid_smoke_attack,cic_ids2017,hybrid_ae,hybrid,pr_optimal,1.0,1.0,0.9982608695652174,0.9965277777777778,1.0,5.720491558651004
+outputs_stage3\local_smoke_test\cic_ids2017_hybrid_smoke,cic_ids2017,hybrid_ae,hybrid,pr_optimal,1.0,1.0,0.9965034965034965,1.0,0.9930313588850174,8.340316607483182
+outputs_stage3\local_smoke_test\unsw_nb15_enhanced_mlp_ae,unsw_nb15,enhanced_mlp_ae,reconstruction,pr_optimal,1.0,1.0,1.0,1.0,1.0,5.696644306182861
+outputs_stage3\local_smoke_test\unsw_nb15_hybrid_ae,unsw_nb15,hybrid_ae,hybrid,pr_optimal,1.0,1.0,1.0,1.0,1.0,15.484276576745929
+outputs_stage3\local_smoke_test\unsw_nb15_transformer_ae,unsw_nb15,transformer_ae,reconstruction,pr_optimal,1.0,1.0,1.0,1.0,1.0,1.0367120504379272
+outputs_stage3\local_smoke_test\unsw_nb15_vae,unsw_nb15,vae,reconstruction,pr_optimal,1.0,1.0,1.0,1.0,1.0,5.93977165222168
+outputs_stage3\local_smoke_test\smoke_single_fix,unsw_nb15,enhanced_mlp_ae,reconstruction,pr_optimal,1.0,1.0,0.998468606431853,1.0,0.9969418960244648,5.0672712326049805

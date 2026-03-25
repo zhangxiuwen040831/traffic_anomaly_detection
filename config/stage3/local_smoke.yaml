@@ -1,0 +1,43 @@
+experiment:
+  notes: "Local CPU smoke validation only"
+
+dataset:
+  smoke_max_rows: 3000
+  force_refresh: true
+
+models:
+  enhanced_mlp_ae:
+    hidden_dims: [64, 32]
+    latent_dim: 16
+    dropout: 0.1
+  transformer_ae:
+    d_model: 32
+    nhead: 4
+    num_layers: 1
+    dim_feedforward: 64
+    latent_dim: 16
+    dropout: 0.1
+  vae:
+    hidden_dims: [64, 32]
+    latent_dim: 8
+    dropout: 0.05
+    beta: 0.03
+  hybrid_ae:
+    hidden_dims: [64, 32]
+    latent_dim: 16
+    dropout: 0.1
+
+training:
+  device: cpu
+  epochs: 4
+  batch_size: 64
+  learning_rate: 0.001
+  early_stopping_patience: 4
+  min_delta: 0.0
+
+scoring:
+  batch_size: 256
+
+outputs:
+  root: outputs_stage3
+  run_group: local_smoke_test

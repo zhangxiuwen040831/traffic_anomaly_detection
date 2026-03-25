@@ -1,0 +1,32 @@
+2026-03-25 21:11:20,699 | INFO | Training on device=cpu for 15 epochs
+2026-03-25 21:11:21,020 | INFO | Epoch 1/15 | train_loss=0.926627 | val_loss=0.747117 | lr=0.001000
+2026-03-25 21:11:21,334 | INFO | Epoch 2/15 | train_loss=0.578038 | val_loss=0.487666 | lr=0.001000
+2026-03-25 21:11:21,666 | INFO | Epoch 3/15 | train_loss=0.430670 | val_loss=0.378087 | lr=0.001000
+2026-03-25 21:11:22,020 | INFO | Epoch 4/15 | train_loss=0.368699 | val_loss=0.339090 | lr=0.001000
+2026-03-25 21:11:22,354 | INFO | Epoch 5/15 | train_loss=0.341748 | val_loss=0.313764 | lr=0.001000
+2026-03-25 21:11:22,693 | INFO | Epoch 6/15 | train_loss=0.318351 | val_loss=0.286872 | lr=0.001000
+2026-03-25 21:11:23,027 | INFO | Epoch 7/15 | train_loss=0.303013 | val_loss=0.270901 | lr=0.001000
+2026-03-25 21:11:23,359 | INFO | Epoch 8/15 | train_loss=0.288644 | val_loss=0.268102 | lr=0.001000
+2026-03-25 21:11:23,682 | INFO | Epoch 9/15 | train_loss=0.280099 | val_loss=0.262939 | lr=0.001000
+2026-03-25 21:11:24,010 | INFO | Epoch 10/15 | train_loss=0.273690 | val_loss=0.245595 | lr=0.001000
+2026-03-25 21:11:24,339 | INFO | Epoch 11/15 | train_loss=0.265751 | val_loss=0.238797 | lr=0.001000
+2026-03-25 21:11:24,659 | INFO | Epoch 12/15 | train_loss=0.263798 | val_loss=0.233644 | lr=0.001000
+2026-03-25 21:11:25,005 | INFO | Epoch 13/15 | train_loss=0.258382 | val_loss=0.231154 | lr=0.001000
+2026-03-25 21:11:25,327 | INFO | Epoch 14/15 | train_loss=0.251071 | val_loss=0.228149 | lr=0.001000
+2026-03-25 21:11:25,661 | INFO | Epoch 15/15 | train_loss=0.246330 | val_loss=0.220402 | lr=0.001000
+2026-03-25 21:16:27,760 | INFO | Training on device=cpu for 15 epochs
+2026-03-25 21:16:28,060 | INFO | Epoch 1/15 | train_loss=0.926627 | val_loss=0.747117 | lr=0.001000
+2026-03-25 21:16:28,370 | INFO | Epoch 2/15 | train_loss=0.578038 | val_loss=0.487666 | lr=0.001000
+2026-03-25 21:16:28,685 | INFO | Epoch 3/15 | train_loss=0.430670 | val_loss=0.378087 | lr=0.001000
+2026-03-25 21:16:28,986 | INFO | Epoch 4/15 | train_loss=0.368699 | val_loss=0.339090 | lr=0.001000
+2026-03-25 21:16:29,321 | INFO | Epoch 5/15 | train_loss=0.341748 | val_loss=0.313764 | lr=0.001000
+2026-03-25 21:16:29,631 | INFO | Epoch 6/15 | train_loss=0.318351 | val_loss=0.286872 | lr=0.001000
+2026-03-25 21:16:29,936 | INFO | Epoch 7/15 | train_loss=0.303013 | val_loss=0.270901 | lr=0.001000
+2026-03-25 21:16:30,248 | INFO | Epoch 8/15 | train_loss=0.288644 | val_loss=0.268102 | lr=0.001000
+2026-03-25 21:16:30,559 | INFO | Epoch 9/15 | train_loss=0.280099 | val_loss=0.262939 | lr=0.001000
+2026-03-25 21:16:30,865 | INFO | Epoch 10/15 | train_loss=0.273690 | val_loss=0.245595 | lr=0.001000
+2026-03-25 21:16:31,188 | INFO | Epoch 11/15 | train_loss=0.265751 | val_loss=0.238797 | lr=0.001000
+2026-03-25 21:16:31,505 | INFO | Epoch 12/15 | train_loss=0.263798 | val_loss=0.233644 | lr=0.001000
+2026-03-25 21:16:31,826 | INFO | Epoch 13/15 | train_loss=0.258382 | val_loss=0.231154 | lr=0.001000
+2026-03-25 21:16:32,150 | INFO | Epoch 14/15 | train_loss=0.251071 | val_loss=0.228149 | lr=0.001000
+2026-03-25 21:16:32,479 | INFO | Epoch 15/15 | train_loss=0.246330 | val_loss=0.220402 | lr=0.001000

@@ -1,0 +1,6 @@
+dataset=unsw_nb15
+input_dim=42
+train_normal=10000
+val=4000
+test=8000
+cache_dir=D:\zlx\traffic_anomaly_detection\data\stage3_real\processed\unsw_nb15\full

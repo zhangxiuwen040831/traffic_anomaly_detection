@@ -1,0 +1,21 @@
+2026-03-25 09:36:53,764 | INFO | Training on device=cpu for 20 epochs
+2026-03-25 09:36:53,930 | INFO | Epoch 1/20 | train_loss=1.115725 | val_loss=1.010161 | lr=0.001000
+2026-03-25 09:36:54,029 | INFO | Epoch 2/20 | train_loss=1.009787 | val_loss=0.965718 | lr=0.001000
+2026-03-25 09:36:54,125 | INFO | Epoch 3/20 | train_loss=0.956371 | val_loss=0.903977 | lr=0.001000
+2026-03-25 09:36:54,226 | INFO | Epoch 4/20 | train_loss=0.922251 | val_loss=0.862429 | lr=0.001000
+2026-03-25 09:36:54,324 | INFO | Epoch 5/20 | train_loss=0.896525 | val_loss=0.834797 | lr=0.001000
+2026-03-25 09:36:54,423 | INFO | Epoch 6/20 | train_loss=0.874799 | val_loss=0.814495 | lr=0.001000
+2026-03-25 09:36:54,519 | INFO | Epoch 7/20 | train_loss=0.856389 | val_loss=0.797145 | lr=0.001000
+2026-03-25 09:36:54,620 | INFO | Epoch 8/20 | train_loss=0.840070 | val_loss=0.783073 | lr=0.001000
+2026-03-25 09:36:54,719 | INFO | Epoch 9/20 | train_loss=0.831682 | val_loss=0.771527 | lr=0.001000
+2026-03-25 09:36:54,817 | INFO | Epoch 10/20 | train_loss=0.817356 | val_loss=0.760275 | lr=0.001000
+2026-03-25 09:36:54,920 | INFO | Epoch 11/20 | train_loss=0.802133 | val_loss=0.749321 | lr=0.001000
+2026-03-25 09:36:55,010 | INFO | Epoch 12/20 | train_loss=0.794045 | val_loss=0.743650 | lr=0.001000
+2026-03-25 09:36:55,093 | INFO | Epoch 13/20 | train_loss=0.787755 | val_loss=0.733320 | lr=0.001000
+2026-03-25 09:36:55,187 | INFO | Epoch 14/20 | train_loss=0.775035 | val_loss=0.727760 | lr=0.001000
+2026-03-25 09:36:55,270 | INFO | Epoch 15/20 | train_loss=0.767207 | val_loss=0.720500 | lr=0.001000
+2026-03-25 09:36:55,377 | INFO | Epoch 16/20 | train_loss=0.765466 | val_loss=0.712333 | lr=0.001000
+2026-03-25 09:36:55,472 | INFO | Epoch 17/20 | train_loss=0.753227 | val_loss=0.705748 | lr=0.001000
+2026-03-25 09:36:55,560 | INFO | Epoch 18/20 | train_loss=0.752127 | val_loss=0.698943 | lr=0.001000
+2026-03-25 09:36:55,638 | INFO | Epoch 19/20 | train_loss=0.742278 | val_loss=0.692147 | lr=0.001000
+2026-03-25 09:36:55,719 | INFO | Epoch 20/20 | train_loss=0.743831 | val_loss=0.687434 | lr=0.001000

@@ -1,0 +1,253 @@
+{
+  "dataset_name": "unsw_nb15",
+  "model_name": "hybrid_ae",
+  "model_parameters": 20514,
+  "input_dim": 42,
+  "scoring_method": "hybrid",
+  "primary_threshold_method": "pr_optimal",
+  "training_summary": {
+    "device": "cpu",
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.6909976201721385,
+        "val_loss": 0.38580566495656965,
+        "train_reconstruction_loss": 0.6909976201721385,
+        "val_reconstruction_loss": 0.38580566495656965,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.4225213482410093,
+        "val_loss": 0.28566662669181825,
+        "train_reconstruction_loss": 0.4225213482410093,
+        "val_reconstruction_loss": 0.28566662669181825,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.34446866357628303,
+        "val_loss": 0.23325515538454056,
+        "train_reconstruction_loss": 0.34446866357628303,
+        "val_reconstruction_loss": 0.23325515538454056,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.3123472006637839,
+        "val_loss": 0.2105224072933197,
+        "train_reconstruction_loss": 0.3123472006637839,
+        "val_reconstruction_loss": 0.2105224072933197,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 5,
+        "train_loss": 0.291928940370113,
+        "val_loss": 0.19127571135759353,
+        "train_reconstruction_loss": 0.291928940370113,
+        "val_reconstruction_loss": 0.19127571135759353,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 6,
+        "train_loss": 0.27399047096318835,
+        "val_loss": 0.1757350355386734,
+        "train_reconstruction_loss": 0.27399047096318835,
+        "val_reconstruction_loss": 0.1757350355386734,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 7,
+        "train_loss": 0.2580471214237092,
+        "val_loss": 0.17533469572663307,
+        "train_reconstruction_loss": 0.2580471214237092,
+        "val_reconstruction_loss": 0.17533469572663307,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 8,
+        "train_loss": 0.25719703205778627,
+        "val_loss": 0.1702558532357216,
+        "train_reconstruction_loss": 0.25719703205778627,
+        "val_reconstruction_loss": 0.1702558532357216,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 9,
+        "train_loss": 0.25181378914585595,
+        "val_loss": 0.1568306252360344,
+        "train_reconstruction_loss": 0.25181378914585595,
+        "val_reconstruction_loss": 0.1568306252360344,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 10,
+        "train_loss": 0.24147118250780467,
+        "val_loss": 0.15593862310051917,
+        "train_reconstruction_loss": 0.24147118250780467,
+        "val_reconstruction_loss": 0.15593862310051917,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 11,
+        "train_loss": 0.2334869722776775,
+        "val_loss": 0.15027855485677719,
+        "train_reconstruction_loss": 0.2334869722776775,
+        "val_reconstruction_loss": 0.15027855485677719,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 12,
+        "train_loss": 0.2296781074019927,
+        "val_loss": 0.14733089059591292,
+        "train_reconstruction_loss": 0.2296781074019927,
+        "val_reconstruction_loss": 0.14733089059591292,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 13,
+        "train_loss": 0.2260887803910654,
+        "val_loss": 0.14622708633542061,
+        "train_reconstruction_loss": 0.2260887803910654,
+        "val_reconstruction_loss": 0.14622708633542061,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 14,
+        "train_loss": 0.22263880828513374,
+        "val_loss": 0.1433985076844692,
+        "train_reconstruction_loss": 0.22263880828513374,
+        "val_reconstruction_loss": 0.1433985076844692,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 15,
+        "train_loss": 0.2190785713588135,
+        "val_loss": 0.14504740610718728,
+        "train_reconstruction_loss": 0.2190785713588135,
+        "val_reconstruction_loss": 0.14504740610718728,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      }
+    ],
+    "best_epoch": 14,
+    "best_val_loss": 0.1433985076844692,
+    "best_checkpoint": "D:\\zlx\\traffic_anomaly_detection\\outputs_stage3\\local_realdata_validation\\ablation\\unsw_nb15_hybrid_ae_hybrid_no_latent_distance\\checkpoints\\best.ckpt",
+    "last_checkpoint": "D:\\zlx\\traffic_anomaly_detection\\outputs_stage3\\local_realdata_validation\\ablation\\unsw_nb15_hybrid_ae_hybrid_no_latent_distance\\checkpoints\\last.ckpt",
+    "total_train_seconds": 6.886004599999978
+  },
+  "dataset_metadata": {
+    "dataset_name": "unsw_nb15",
+    "raw_source": "official_train_test",
+    "used_files": [
+      "UNSW_NB15_training-set.csv",
+      "UNSW_NB15_testing-set.csv"
+    ],
+    "split_strategy": "official_train_test_with_train_validation_split",
+    "label_column": "label",
+    "attack_column": "attack_cat",
+    "normal_label": 0,
+    "input_dim": 42,
+    "train_size": 10000,
+    "train_normal_size": 10000,
+    "val_size": 4000,
+    "test_size": 8000,
+    "train_label_distribution": {
+      "normal": 10000,
+      "anomaly": 0
+    },
+    "val_label_distribution": {
+      "normal": 1277,
+      "anomaly": 2723
+    },
+    "test_label_distribution": {
+      "normal": 3595,
+      "anomaly": 4405
+    },
+    "preprocessing": {
+      "categorical_columns": [
+        "proto",
+        "service",
+        "state"
+      ],
+      "numerical_columns": [
+        "dur",
+        "spkts",
+        "dpkts",
+        "sbytes",
+        "dbytes",
+        "rate",
+        "sttl",
+        "dttl",
+        "sload",
+        "dload",
+        "sloss",
+        "dloss",
+        "sinpkt",
+        "dinpkt",
+        "sjit",
+        "djit",
+        "swin",
+        "stcpb",
+        "dtcpb",
+        "dwin",
+        "tcprtt",
+        "synack",
+        "ackdat",
+        "smean",
+        "dmean",
+        "trans_depth",
+        "response_body_len",
+        "ct_srv_src",
+        "ct_state_ttl",
+        "ct_dst_ltm",
+        "ct_src_dport_ltm",
+        "ct_dst_sport_ltm",
+        "ct_dst_src_ltm",
+        "is_ftp_login",
+        "ct_ftp_cmd",
+        "ct_flw_http_mthd",
+        "ct_src_ltm",
+        "ct_srv_dst",
+        "is_sm_ips_ports"
+      ],
+      "feature_count": 42,
+      "scaler_mean_preview": [
+        1.0091031627811018,
+        30.9212,
+        38.2837,
+        4089.662,
+        31193.2866
+      ]
+    }
+  }
+}

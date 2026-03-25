@@ -1,0 +1,5 @@
+2026-03-25 09:40:34,992 | INFO | Training on device=cpu for 4 epochs
+2026-03-25 09:40:35,105 | INFO | Epoch 1/4 | train_loss=1.105874 | val_loss=1.037021 | lr=0.001000
+2026-03-25 09:40:35,217 | INFO | Epoch 2/4 | train_loss=0.996612 | val_loss=0.993963 | lr=0.001000
+2026-03-25 09:40:35,330 | INFO | Epoch 3/4 | train_loss=0.961389 | val_loss=0.966276 | lr=0.001000
+2026-03-25 09:40:35,422 | INFO | Epoch 4/4 | train_loss=0.953917 | val_loss=0.955708 | lr=0.001000

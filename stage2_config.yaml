@@ -1,0 +1,47 @@
+
+project_name: traffic_anomaly_detection_stage2
+data_dir: /root/lanyun-tmp/data
+output_dir: /root/lanyun-tmp/traffic_anomaly_detection/outputs_stage2
+
+dataset:
+  name: UNSW-NB15
+  train_urls:
+      - "https://gitcode.net/mirrors/khhuang47/UNSW-NB15/raw/master/UNSW_NB15_training-set.csv"
+  test_urls:
+    - "https://gitcode.net/mirrors/khhuang47/UNSW-NB15/raw/master/UNSW_NB15_testing-set.csv"
+    - "https://raw.githubusercontent.com/defcom17/UNSW-NB15/master/UNSW_NB15_testing-set.csv"
+    - "https://gitcode.net/mirrors/defcom17/UNSW-NB15/raw/master/UNSW_NB15_testing-set.csv"
+
+preprocessing:
+  sample_size: 0
+  normal_label: 0
+  test_size: 0.2
+  random_state: 42
+
+model:
+  type: mlp_autoencoder_enhanced
+  hidden_dims: [128, 64, 32, 64, 128]
+  activation: relu
+  dropout: 0.3
+  use_batchnorm: true
+
+training:
+  batch_size: 256
+  epochs: 1000
+  learning_rate: 0.001
+  optimizer: adam
+  loss: mse
+  use_learning_rate_scheduler: true
+  early_stopping_patience: 50
+
+evaluation:
+  threshold_method: percentile
+  percentile: 95
+
+paths:
+  raw_data: /root/lanyun-tmp/data/raw
+  processed_data: /root/lanyun-tmp/data/processed
+  logs: /root/lanyun-tmp/traffic_anomaly_detection/outputs_stage2/logs
+  checkpoints: /root/lanyun-tmp/traffic_anomaly_detection/outputs_stage2/checkpoints
+  figures: /root/lanyun-tmp/traffic_anomaly_detection/outputs_stage2/figures
+  reports: /root/lanyun-tmp/traffic_anomaly_detection/outputs_stage2/reports
