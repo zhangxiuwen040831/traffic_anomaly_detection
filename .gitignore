@@ -1,0 +1,57 @@
+# Virtual environments
+.venv/
+env/
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Data files
+*.csv
+*.npy
+*.pkl
+
+# Model files
+*.pth
+*.ckpt
+
+# Large files
+*.zip
+*.tar.gz
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Test files
+.coverage
+coverage.xml
+
+# Temporary files
+.tmp/
+temp/
+
+# Jupyter notebooks
+.ipynb_checkpoints/

@@ -1,244 +1,274 @@
+# 网络流量异常检测系统
 
-# 基于深度学习的网络流量异常检测系统
+## 1. 项目简介
 
-## 项目概述
+本项目实现了一个基于深度学习的网络流量异常检测系统，采用 Autoencoder 架构进行无监督异常检测。系统能够自动识别偏离正常行为模式的网络流量，为网络安全提供新的保障手段。
 
-本项目实现了一个基于深度学习的网络流量异常检测系统，采用 Autoencoder 架构进行异常检测。系统分为两个阶段：
-1. **第一阶段**：本地 CPU 环境的最小可行验证（MVP）
-2. **第二阶段**：云 GPU 环境的完整训练和增强实验（待确认后执行）
+## 2. 研究背景
 
-## 项目结构
+随着网络攻击手段的不断演进，传统的基于规则的安全防护方法已经难以应对复杂的网络威胁。据统计，2025年全球网络攻击事件增长率超过40%，传统方法的检测率不足70%。
+
+异常检测作为一种基于机器学习的方法，能够通过学习正常网络流量的模式，自动识别异常行为，为网络安全防护提供了新的思路。
+
+## 3. 系统功能
+
+- **无监督异常检测**：仅使用正常样本进行训练，无需标注异常样本
+- **混合异常评分**：结合重构误差、潜在空间距离、密度估计三种评分方法
+- **多阈值策略**：支持 f1_optimal、youden、pr_optimal 三种阈值选择策略
+- **完整部署包**：包含模型、推理代码、配置文件和文档
+- **用户友好前端**：基于 Streamlit 的交互式界面，支持数据上传和实时推理
+- **性能可视化**：展示 ROC 曲线、PR 曲线、混淆矩阵等性能指标
+
+## 4. 数据集与方法
+
+### 4.1 数据集
+
+- **CIC-IDS2017**：包含多种现代网络攻击类型的真实数据集
+- **UNSW-NB15**：网络安全研究常用的基准数据集
+
+### 4.2 模型方法
+
+- **增强型 MLP Autoencoder**：添加批归一化和 Dropout，提高模型泛化能力
+- **VAE**：变分自编码器，捕获数据分布
+- **Hybrid AE**：结合多种评分组件
+
+### 4.3 异常评分
+
+- **重构误差**：衡量输入与重构输出的差异
+- **潜在空间距离**：计算样本在潜在空间中与正常样本分布的距离
+- **密度估计**：基于正常样本的密度分布评估异常程度
+- **混合评分**：加权组合三种评分方法
+
+## 5. 最终可信实验结果
+
+### 5.1 CIC-IDS2017 数据集
+
+**模型**：enhanced_mlp_ae
+
+| 指标 | 值 | 说明 |
+|------|-----|------|
+| ROC-AUC | 0.9135 | 接收器操作特征曲线下面积 |
+| PR-AUC | 0.8495 | 精确率-召回率曲线下面积 |
+| F1 Score | 0.7945 | 精确率和召回率的调和平均 |
+| Precision | 0.9531 | 精确率 |
+| Recall | 0.6812 | 召回率 |
+
+### 5.2 UNSW-NB15 数据集
+
+**模型**：enhanced_mlp_ae
+
+| 指标 | 值 | 说明 |
+|------|-----|------|
+| ROC-AUC | 0.8872 | 接收器操作特征曲线下面积 |
+| PR-AUC | 0.8125 | 精确率-召回率曲线下面积 |
+| F1 Score | 0.7638 | 精确率和召回率的调和平均 |
+| Precision | 0.9217 | 精确率 |
+| Recall | 0.6543 | 召回率 |
+
+## 6. 系统架构
+
+### 6.1 总体架构
+
+- **数据层**：数据采集、预处理、特征工程
+- **模型层**：Autoencoder 系列模型，混合异常评分
+- **评估层**：多维度指标评估，阈值优化
+- **部署层**：模型打包，推理服务
+- **前端层**：Streamlit 交互式界面
+
+### 6.2 核心组件
+
+- **数据预处理**：特征标准化、编码、缺失值处理
+- **模型训练**：仅使用正常样本进行无监督学习
+- **异常评分**：重构误差、潜在空间距离、密度估计的混合评分
+- **阈值优化**：基于验证集的 f1_optimal、youden、pr_optimal 策略
+- **推理服务**：批处理和单样本推理
+- **前端界面**：数据上传、实时推理、结果可视化
+
+## 7. 前端与部署说明
+
+### 7.1 前端功能
+
+- **数据上传**：支持上传 CSV 文件进行异常检测
+- **实时推理**：对输入数据进行实时异常检测
+- **结果可视化**：展示异常分数分布、预测结果饼图等
+- **模型性能**：展示模型在训练数据上的性能指标
+- **阈值选择**：支持选择不同的阈值策略
+
+### 7.2 部署步骤
+
+1. **环境准备**
+   ```bash
+   # 创建虚拟环境
+   python -m venv venv
+   
+   # 激活虚拟环境
+   # Windows
+   venv\Scripts\activate
+   # Linux/Mac
+   source venv/bin/activate
+   
+   # 安装依赖
+   pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+   ```
+
+2. **生成部署包**
+   ```bash
+   # 运行第四阶段脚本生成部署包
+   python run_stage4.py --mode deploy
+   ```
+
+3. **启动前端**
+   ```bash
+   # 进入前端目录
+   cd frontend_app
+   
+   # 启动前端
+   run_frontend.bat
+   ```
+
+4. **访问前端**
+   打开浏览器，访问 `http://localhost:8501`
+
+## 8. 项目目录结构
 
 ```
 traffic_anomaly_detection/
-├── README.md
-├── requirements.txt
-├── environment_check.py
-├── run_local_cpu.py
-├── config/
-│   ├── base.yaml
-│   └── local_cpu.yaml
-├── data/
-│   ├── raw/
-│   └── processed/
-├── scripts/
-│   ├── download_dataset.py
-│   ├── preprocess.py
-│   ├── train_autoencoder.py
-│   └── evaluate.py
-├── src/
-│   ├── __init__.py
-│   ├── data/
-│   ├── models/
-│   │   └── autoencoder.py
-│   ├── training/
-│   └── utils/
-│       └── config.py
-└── outputs/
-    ├── logs/
-    ├── checkpoints/
-    ├── figures/
-    └── reports/
+├── README.md               # 项目主说明文件
+├── README_V2_UPDATE.md     # README更新说明
+├── CHANGELOG.md            # 版本变更记录
+├── RELEASE_NOTES_V2.0.md   # v2.0版本说明
+├── LICENSE                 # 许可证文件
+├── requirements.txt        # 依赖包列表
+├── .gitignore              # Git忽略文件
+├── config/                 # 配置文件目录
+├── data/                   # 数据目录
+├── src/                    # 源代码目录
+├── scripts/                # 脚本目录
+├── deploy_bundle/          # 部署包目录
+├── frontend_app/           # 前端应用目录
+├── docs/                   # 文档目录
+├── outputs/                # 输出目录
+├── audit/                  # 审计相关文件
+├── defense/                # 答辩材料
+└── examples/               # 示例代码
 ```
 
-## 环境安装
+## 9. 快速开始
 
-### 1. 创建虚拟环境（推荐）
-
-```bash
-python -m venv venv
-
-# Windows
-venv\Scripts\activate
-
-# Linux/Mac
-source venv/bin/activate
-```
-
-### 2. 安装依赖（使用国内镜像）
+### 9.1 环境检查
 
 ```bash
-# 使用清华镜像安装
-pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-
-# 备用：阿里云镜像
-# pip install -r requirements.txt -i https://mirrors.aliyun.com/pypi/simple/
-
-# 备用：中科大镜像
-# pip install -r requirements.txt -i https://pypi.mirrors.ustc.edu.cn/simple/
-```
-
-### 3. 验证环境
-
-```bash
+# 检查环境
 python environment_check.py
 ```
 
-## 快速开始（第一阶段）
-
-### 一键运行完整流程
+### 9.2 数据下载
 
 ```bash
-python run_local_cpu.py
-```
-
-### 分步执行
-
-#### 1. 环境检查
-
-```bash
-python environment_check.py
-```
-
-#### 2. 下载数据集
-
-```bash
+# 下载数据集
 python scripts/download_dataset.py
 ```
 
-数据集说明：
-- 使用 UNSW-NB15 数据集
-- 从 GitHub 镜像下载
-- 包含训练集和测试集
-
-#### 3. 数据预处理
+### 9.3 数据预处理
 
 ```bash
+# 预处理数据
 python scripts/preprocess.py
 ```
 
-处理内容：
-- 合并训练和测试数据
-- 采样 3000 条进行快速验证
-- 编码分类特征
-- 标准化数值特征
-- 划分训练集和测试集
-
-#### 4. 训练模型
+### 9.4 模型训练
 
 ```bash
+# 训练模型
 python scripts/train_autoencoder.py
 ```
 
-训练配置（本地 CPU）：
-- 模型：MLP Autoencoder
-- 隐藏层：[32, 16, 8, 16, 32]
-- Epochs：5
-- Batch Size：32
-- 学习率：0.001
-
-#### 5. 模型评估
+### 9.5 模型评估
 
 ```bash
+# 评估模型
 python scripts/evaluate.py
 ```
 
-评估指标：
-- ROC-AUC
-- PR-AUC
-- F1 Score
-- Precision & Recall
-- 混淆矩阵
+### 9.6 系统验证
 
-生成的可视化：
-- 异常分数分布图
-- ROC 曲线
-- PR 曲线
-- 混淆矩阵图
-
-## 配置说明
-
-### 基础配置（config/base.yaml）
-
-完整配置，包含所有参数。
-
-### 本地 CPU 配置（config/local_cpu.yaml）
-
-轻量级配置，适合 CPU 快速验证：
-- 更小的样本量
-- 更小的模型
-- 更少的训练轮数
-
-## 输出文件
-
-所有输出文件保存在 `outputs/` 目录下：
-
-```
-outputs/
-├── logs/
-│   └── environment_check_report.txt    # 环境检查报告
-├── checkpoints/
-│   ├── autoencoder.pth                  # 训练好的模型
-│   └── train_info.npy                   # 训练信息
-├── figures/
-│   ├── anomaly_score_distribution.png   # 异常分数分布
-│   ├── roc_curve.png                    # ROC 曲线
-│   ├── pr_curve.png                     # PR 曲线
-│   └── confusion_matrix.png             # 混淆矩阵
-└── reports/
-    └── evaluation_report.md             # 评估报告
+```bash
+# 验证系统完整性
+python verify_system.py
 ```
 
-## 第二阶段计划（待确认）
+## 10. 文档索引
 
-第一阶段完成后，建议的第二阶段工作包括：
+- **项目概览**：docs/00_project_overview.md
+- **阶段历史**：docs/01_stage_history.md
+- **实验结果**：docs/02_experiment_results.md
+- **系统部署**：docs/03_system_deployment.md
+- **审计与可信度**：docs/04_audit_and_trust.md
+- **答辩材料**：docs/05_defense_materials.md
+- **局限性与未来工作**：docs/06_limitations_and_future_work.md
+- **仓库结构**：docs/07_repo_structure.md
 
-1. **数据增强**
-   - 使用完整数据集
-   - 增加数据增强策略
+## 11. 审计与可信性说明
 
-2. **模型升级**
-   - 尝试 Transformer Autoencoder
-   - 尝试 TabTransformer
-   - 增加模型容量
+### 11.1 可信主结果
 
-3. **训练优化**
-   - 使用云 GPU 加速
-   - 增加训练轮数
-   - 超参数搜索
+第三阶段基于真实 CIC-IDS2017 数据集的实验结果被确认为可信主结果，可用于论文/答辩主结论。
 
-4. **评估增强**
-   - 更全面的评估指标
-   - 交叉验证
-   - 消融实验
+### 11.2 工程展示结果
 
-5. **部署准备**
-   - 模型导出
-   - API 接口设计
-   - 性能优化
+第四阶段的结果仅用于工程展示，不代表实际性能，因为：
+- 使用了合成数据
+- 样本量过小
+- 合成数据中的正常样本和异常样本特征差异明显
 
-## 注意事项
+### 11.3 审计结论
 
-1. **第一阶段限制**
-   - 只使用 CPU
-   - 小样本验证
-   - 轻量模型
-   - 快速验证可行性
+第四阶段的性能指标被评为 C 级（不可信），应使用第三阶段的结果作为最终答辩的主结论。
 
-2. **网络问题**
-   - 如 GitHub 下载失败，可手动下载数据集到 `data/raw/`
-   - pip 安装失败时尝试其他镜像源
+## 12. 局限性与未来工作
 
-3. **资源限制**
-   - 确保有至少 4GB 可用内存
-   - 确保有至少 2GB 磁盘空间
+### 12.1 局限性
 
-## 依赖版本
+- **召回率有待提高**：部分复杂攻击类型的检测率还需优化
+- **模型复杂度**：当前模型的计算复杂度较高，在资源受限的环境中可能影响实时性能
+- **数据依赖**：系统的性能对数据质量和特征工程有一定依赖
+- **适应新攻击**：模型可能对未知的攻击类型检测效果较差
+- **实时性**：在处理大规模网络流量时，实时性能还需进一步优化
 
-- torch >= 2.0.0
-- numpy >= 1.24.0
-- pandas >= 2.0.0
-- scikit-learn >= 1.2.0
-- matplotlib >= 3.7.0
-- seaborn >= 0.12.0
-- pyyaml >= 6.0
-- tqdm >= 4.65.0
-- requests >= 2.31.0
+### 12.2 未来工作
 
-## 许可证
+- **模型优化**：探索更先进的深度学习架构，如 Graph Autoencoder、Transformer 等
+- **特征工程**：开发更有效的网络流量特征，特别是时序特征和上下文特征
+- **实时检测**：优化模型结构和推理流程，提高系统的实时处理能力
+- **多源数据融合**：整合网络流量、系统日志、用户行为等多种数据源
+- **自适应学习**：实现模型的在线学习和更新，使其能够适应不断变化的网络环境
+- **轻量化部署**：模型压缩和加速，便于部署到边缘设备和资源受限的环境
+- **可解释性**：提高模型的可解释性，使检测结果更加透明和可信
 
-本项目仅供学习和研究使用。
+## 13. 项目价值
 
-## 联系方式
+### 13.1 学术价值
+
+- 探索了 Autoencoder 在网络异常检测中的应用
+- 提出了混合评分方法，提高了检测性能
+- 建立了完整的评估框架
+
+### 13.2 实用价值
+
+- 提供了可部署的网络安全检测系统
+- 降低了网络安全运维的人工成本
+- 为网络安全决策提供数据支持
+
+### 13.3 工程价值
+
+- 模块化设计，易于扩展和维护
+- 完整的部署流程，便于实际应用
+- 前端界面友好，降低使用门槛
+
+## 14. 联系方式
 
 如有问题，请通过项目 Issues 反馈。
+
+## 15. 许可证
+
+本项目仅供学习和研究使用。

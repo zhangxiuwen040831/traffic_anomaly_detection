@@ -6,6 +6,7 @@ PROJECT_ROOT="${1:-$PWD}"
 mkdir -p "${PROJECT_ROOT}/data/raw/unsw_nb15"
 mkdir -p "${PROJECT_ROOT}/data/raw/cic_ids2017"
 mkdir -p "${PROJECT_ROOT}/data/processed"
+mkdir -p "${PROJECT_ROOT}/data/stage3/processed"
 
 mkdir -p "${PROJECT_ROOT}/outputs_stage3/cloud_prepare/logs"
 mkdir -p "${PROJECT_ROOT}/outputs_stage3/cloud_prepare/checkpoints"

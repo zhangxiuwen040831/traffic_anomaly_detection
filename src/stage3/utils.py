@@ -9,6 +9,12 @@ from typing import Any
 
 import numpy as np
 
+try:
+    import yaml
+    HAS_YAML = True
+except ImportError:
+    HAS_YAML = False
+
 
 def ensure_dir(path: str | Path) -> Path:
     resolved = Path(path)
@@ -46,11 +52,16 @@ def set_seed(seed: int) -> None:
         pass
 
 
-def save_json(path: str | Path, payload: dict[str, Any]) -> None:
+def save_json(path: str | Path, payload: dict[str, Any], yaml_format: bool = False) -> None:
     target = Path(path)
     ensure_dir(target.parent)
-    with target.open("w", encoding="utf-8") as handle:
-        json.dump(payload, handle, indent=2, ensure_ascii=False)
+    
+    if yaml_format and HAS_YAML:
+        with target.open("w", encoding="utf-8") as handle:
+            yaml.dump(payload, handle, indent=2, allow_unicode=True, default_flow_style=False)
+    else:
+        with target.open("w", encoding="utf-8") as handle:
+            json.dump(payload, handle, indent=2, ensure_ascii=False)
 
 
 def load_json(path: str | Path) -> dict[str, Any]:

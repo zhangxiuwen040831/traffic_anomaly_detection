@@ -1,0 +1,27 @@
+experiment:
+  notes: "Cloud GPU long training on CIC-IDS2017 flow CSV split"
+
+dataset:
+  name: cic_ids2017
+  raw_root: data/raw/cic_ids2017
+  processed_root: data/stage3/processed
+  cache_enabled: true
+  force_refresh: false
+  smoke_max_rows: 0
+
+training:
+  device: auto
+  epochs: 120
+  batch_size: 256
+  learning_rate: 0.0005
+  early_stopping_patience: 15
+  min_delta: 0.00005
+  num_workers: 4
+  resume: true
+
+scoring:
+  batch_size: 2048
+
+outputs:
+  root: outputs_stage3
+  run_group: future_gpu_plan

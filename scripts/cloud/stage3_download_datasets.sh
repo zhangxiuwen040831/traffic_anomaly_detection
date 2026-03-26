@@ -76,14 +76,14 @@ extract_and_cleanup() {
 download_unsw() {
   local dest_dir="${RAW_ROOT}/unsw_nb15"
   download_with_fallback "${dest_dir}/UNSW_NB15_training-set.csv" \
-    "${UNSW_TRAIN_MIRROR:-https://gitcode.net/mirrors/defcom17/UNSW_NB15/raw/master/UNSW_NB15_training-set.csv}" \
-    "https://raw.githubusercontent.com/defcom17/UNSW_NB15/master/UNSW_NB15_training-set.csv" \
-    "https://github.com/defcom17/UNSW_NB15/raw/master/UNSW_NB15_training-set.csv"
+    "${UNSW_TRAIN_MIRROR:-https://raw.githubusercontent.com/Nir-J/ML-Projects/master/UNSW-Network_Packet_Classification/UNSW_NB15_training-set.csv}" \
+    "https://cdn.jsdelivr.net/gh/Nir-J/ML-Projects@master/UNSW-Network_Packet_Classification/UNSW_NB15_training-set.csv" \
+    "https://raw.githubusercontent.com/Nir-J/ML-Projects/master/UNSW-Network_Packet_Classification/UNSW_NB15_training-set.csv"
 
   download_with_fallback "${dest_dir}/UNSW_NB15_testing-set.csv" \
-    "${UNSW_TEST_MIRROR:-https://gitcode.net/mirrors/defcom17/UNSW_NB15/raw/master/UNSW_NB15_testing-set.csv}" \
-    "https://raw.githubusercontent.com/defcom17/UNSW_NB15/master/UNSW_NB15_testing-set.csv" \
-    "https://github.com/defcom17/UNSW_NB15/raw/master/UNSW_NB15_testing-set.csv"
+    "${UNSW_TEST_MIRROR:-https://raw.githubusercontent.com/Nir-J/ML-Projects/master/UNSW-Network_Packet_Classification/UNSW_NB15_testing-set.csv}" \
+    "https://cdn.jsdelivr.net/gh/Nir-J/ML-Projects@master/UNSW-Network_Packet_Classification/UNSW_NB15_testing-set.csv" \
+    "https://raw.githubusercontent.com/Nir-J/ML-Projects/master/UNSW-Network_Packet_Classification/UNSW_NB15_testing-set.csv"
 }
 
 download_cic_ids2017() {

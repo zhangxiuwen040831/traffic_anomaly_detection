@@ -10,7 +10,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from src.stage3.config import load_stage3_config
 from src.stage3.data import prepare_dataset
-from src.stage3.pipeline import evaluate_existing_run, run_ablation_suite, run_experiment, summarize_runs
+from src.stage3.pipeline import evaluate_checkpoint_to_run, evaluate_existing_run, run_ablation_suite, run_experiment, summarize_runs
 from src.stage3.utils import ensure_dir
 
 
@@ -32,6 +32,15 @@ def parse_args() -> argparse.Namespace:
     eval_parser = subparsers.add_parser("eval", help="Re-evaluate an existing run")
     eval_parser.add_argument("--run-dir", required=True)
     eval_parser.add_argument("--smoke", action="store_true")
+
+    checkpoint_eval_parser = subparsers.add_parser("checkpoint-eval", help="Evaluate a saved checkpoint into a new run directory")
+    checkpoint_eval_parser.add_argument("--source-run-dir", required=True)
+    checkpoint_eval_parser.add_argument("--checkpoint-name", default="best.ckpt")
+    checkpoint_eval_parser.add_argument("--model", default=None)
+    checkpoint_eval_parser.add_argument("--dataset", default=None)
+    checkpoint_eval_parser.add_argument("--run-group", default=None)
+    checkpoint_eval_parser.add_argument("--run-name", default=None)
+    checkpoint_eval_parser.add_argument("--smoke", action="store_true")
 
     smoke_parser = subparsers.add_parser("smoke-test", help="Run local CPU smoke suite for required models")
     smoke_parser.add_argument("--dataset", default=None)
@@ -84,6 +93,26 @@ def main() -> int:
     if args.command == "eval":
         result = evaluate_existing_run(run_dir=args.run_dir, config=config, smoke_mode=args.smoke)
         print(f"Evaluation refreshed: {result['run_dir']}")
+        return 0
+
+    if args.command == "checkpoint-eval":
+        result = evaluate_checkpoint_to_run(
+            config=config,
+            source_run_dir=args.source_run_dir,
+            checkpoint_name=args.checkpoint_name,
+            model_name=args.model,
+            dataset_name=args.dataset,
+            run_group=args.run_group,
+            run_name=args.run_name,
+            smoke_mode=args.smoke,
+        )
+        print(f"Checkpoint evaluation completed: {result['run_dir']}")
+        print(
+            "Primary metrics: "
+            f"ROC-AUC={result['primary_metrics']['roc_auc']:.4f}, "
+            f"PR-AUC={result['primary_metrics']['pr_auc']:.4f}, "
+            f"F1={result['primary_metrics']['f1']:.4f}"
+        )
         return 0
 
     if args.command == "smoke-test":

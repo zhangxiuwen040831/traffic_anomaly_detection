@@ -1,0 +1,37 @@
+experiment:
+  notes: "Cloud GPU long training on UNSW-NB15 official train/test split"
+
+dataset:
+  name: unsw_nb15
+  raw_root: data/raw/unsw_nb15
+  processed_root: data/stage3/processed
+  cache_enabled: true
+  force_refresh: false
+  use_official_split: true
+  official_val_fraction: 0.2
+  official_train_sample_size: 0
+  official_test_sample_size: 0
+  train_normal_max: 0
+  val_sample_size: 0
+  test_sample_size: 0
+  datasets:
+    unsw_nb15:
+      train_file: UNSW_NB15_training-set.csv
+      test_file: UNSW_NB15_testing-set.csv
+
+training:
+  device: auto
+  epochs: 120
+  batch_size: 256
+  learning_rate: 0.0005
+  early_stopping_patience: 15
+  min_delta: 0.00005
+  num_workers: 4
+  resume: true
+
+scoring:
+  batch_size: 2048
+
+outputs:
+  root: outputs_stage3
+  run_group: future_gpu_plan

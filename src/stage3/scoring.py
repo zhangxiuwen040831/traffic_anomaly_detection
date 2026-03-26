@@ -20,7 +20,7 @@ class AnomalyScorer:
         self.weights = dict(model_config.get("scoring", {}).get("weights", {}))
         self.reference: dict[str, Any] = {}
 
-    def _collect_outputs(self, features: np.ndarray) -> dict[str, np.ndarray]:
+    def _collect_outputs(self, features: np.ndarray, collect_feature_errors: bool = False) -> dict[str, np.ndarray]:
         loader = DataLoader(
             TensorDataset(torch.tensor(features, dtype=torch.float32)),
             batch_size=int(self.scoring_config.get("batch_size", 512)),
@@ -29,23 +29,45 @@ class AnomalyScorer:
         self.model.eval()
         recon_errors: list[np.ndarray] = []
         latents: list[np.ndarray] = []
+        feature_errors: list[np.ndarray] = []
+        weighted_feature_scores: list[np.ndarray] = []
+        feature_weight_tensor: torch.Tensor | None = None
+        if not collect_feature_errors and "feature_weights" in self.reference:
+            feature_weight_tensor = torch.tensor(self.reference["feature_weights"], dtype=torch.float32, device=self.device)
         with torch.no_grad():
             for (batch,) in loader:
                 batch = batch.to(self.device)
                 outputs = self.model(batch)
                 reconstruction = outputs["reconstruction"]
-                recon_error = torch.mean((reconstruction - batch) ** 2, dim=1)
+                squared_error = (reconstruction - batch) ** 2
+                recon_error = torch.mean(squared_error, dim=1)
                 recon_errors.append(recon_error.detach().cpu().numpy())
+                if collect_feature_errors:
+                    feature_errors.append(squared_error.detach().cpu().numpy())
+                elif feature_weight_tensor is not None:
+                    weighted_error = torch.mean(squared_error * feature_weight_tensor.unsqueeze(0), dim=1)
+                    weighted_feature_scores.append(weighted_error.detach().cpu().numpy())
                 latent = outputs.get("latent")
                 if latent is not None:
                     latents.append(latent.detach().cpu().numpy())
         payload = {"reconstruction": np.concatenate(recon_errors, axis=0)}
         if latents:
             payload["latent"] = np.concatenate(latents, axis=0)
+        if feature_errors:
+            payload["feature_errors"] = np.concatenate(feature_errors, axis=0)
+        if weighted_feature_scores:
+            payload["weighted_feature"] = np.concatenate(weighted_feature_scores, axis=0)
         return payload
 
+    def _build_feature_weights(self, feature_errors: np.ndarray) -> np.ndarray:
+        mean_error = np.mean(feature_errors, axis=0)
+        stabilized = np.maximum(mean_error, 1e-6)
+        raw_weights = 1.0 / stabilized
+        normalized = raw_weights / np.mean(raw_weights)
+        return np.clip(normalized, 0.25, 4.0).astype(np.float64)
+
     def fit(self, train_normal_features: np.ndarray) -> None:
-        payload = self._collect_outputs(train_normal_features)
+        payload = self._collect_outputs(train_normal_features, collect_feature_errors=True)
         reconstruction_scores = payload["reconstruction"]
         self.reference["component_stats"] = {
             "reconstruction": {
@@ -53,6 +75,16 @@ class AnomalyScorer:
                 "std": float(np.std(reconstruction_scores) + 1e-8),
             }
         }
+
+        feature_errors = payload.get("feature_errors")
+        if feature_errors is not None and feature_errors.size > 0:
+            feature_weights = self._build_feature_weights(feature_errors)
+            weighted_feature_scores = np.mean(feature_errors * feature_weights.reshape(1, -1), axis=1)
+            self.reference["feature_weights"] = feature_weights.tolist()
+            self.reference["component_stats"]["weighted_feature"] = {
+                "mean": float(np.mean(weighted_feature_scores)),
+                "std": float(np.std(weighted_feature_scores) + 1e-8),
+            }
 
         latent = payload.get("latent")
         if latent is not None and len(latent) > 1:
@@ -93,6 +125,8 @@ class AnomalyScorer:
     def score(self, features: np.ndarray) -> dict[str, Any]:
         payload = self._collect_outputs(features)
         components: dict[str, np.ndarray] = {"reconstruction": payload["reconstruction"]}
+        if "weighted_feature" in payload:
+            components["weighted_feature"] = payload["weighted_feature"]
         latent = payload.get("latent")
         if latent is not None and "latent_mean" in self.reference:
             components["latent_distance"] = self._mahalanobis(latent, self.reference["latent_mean"], self.reference["latent_inv_cov"])
@@ -117,3 +151,19 @@ class AnomalyScorer:
             "components": {key: value.astype(np.float64) for key, value in components.items()},
             "method": self.method,
         }
+
+    def serialize_reference(self) -> dict[str, Any]:
+        serializable: dict[str, Any] = {}
+        for key, value in self.reference.items():
+            if isinstance(value, np.ndarray):
+                serializable[key] = value.tolist()
+            elif isinstance(value, dict):
+                serializable[key] = {}
+                for inner_key, inner_value in value.items():
+                    if isinstance(inner_value, np.ndarray):
+                        serializable[key][inner_key] = inner_value.tolist()
+                    else:
+                        serializable[key][inner_key] = inner_value
+            else:
+                serializable[key] = value
+        return serializable

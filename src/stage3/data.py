@@ -308,11 +308,16 @@ def _prepare_features(
         val_num = np.empty((len(val_df), 0), dtype=np.float32)
         test_num = np.empty((len(test_df), 0), dtype=np.float32)
 
+    categorical_categories: dict[str, list[str]] = {}
     if categorical_cols:
         encoder = OrdinalEncoder(handle_unknown="use_encoded_value", unknown_value=-1)
         train_cat = encoder.fit_transform(train_df[categorical_cols].fillna("__nan__").astype(str)).astype(np.float32)
         val_cat = encoder.transform(val_df[categorical_cols].fillna("__nan__").astype(str)).astype(np.float32)
         test_cat = encoder.transform(test_df[categorical_cols].fillna("__nan__").astype(str)).astype(np.float32)
+        categorical_categories = {
+            column: [str(category) for category in categories]
+            for column, categories in zip(categorical_cols, encoder.categories_)
+        }
     else:
         train_cat = np.empty((len(train_df), 0), dtype=np.float32)
         val_cat = np.empty((len(val_df), 0), dtype=np.float32)
@@ -337,7 +342,14 @@ def _prepare_features(
         "categorical_columns": categorical_cols,
         "numerical_columns": numeric_cols,
         "feature_count": len(feature_names),
-        "scaler_mean_preview": scaler.mean_[: min(5, len(scaler.mean_))].tolist(),
+        "feature_names": feature_names,
+        "numeric_impute_values": {column: float(numeric_means[column]) for column in numeric_cols},
+        "categorical_fill_value": "__nan__",
+        "categorical_unknown_value": -1,
+        "categorical_categories": categorical_categories,
+        "scaler_mean": scaler.mean_.tolist(),
+        "scaler_scale": scaler.scale_.tolist(),
+        "scaler_var": scaler.var_.tolist(),
     }
     return train_features, val_features, test_features, train_features[normal_mask_train], feature_names, preprocessing_meta
 
@@ -459,6 +471,13 @@ def prepare_dataset(config: dict[str, Any], dataset_name: str | None = None, smo
             },
             "preprocessing": preprocessing_meta,
         }
+        metadata["preprocessing"].update(
+            {
+                "drop_columns": drop_columns,
+                "label_column": label_col,
+                "attack_column": attack_col or "",
+            }
+        )
 
         bundle = PreparedDataset(
             dataset_name=dataset_name,
@@ -559,6 +578,13 @@ def prepare_dataset(config: dict[str, Any], dataset_name: str | None = None, smo
         },
         "preprocessing": preprocessing_meta,
     }
+    metadata["preprocessing"].update(
+        {
+            "drop_columns": drop_columns,
+            "label_column": label_col,
+            "attack_column": attack_col or "",
+        }
+    )
 
     bundle = PreparedDataset(
         dataset_name=dataset_name,
