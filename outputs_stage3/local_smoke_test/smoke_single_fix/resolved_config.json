@@ -1,0 +1,235 @@
+{
+  "experiment": {
+    "seed": 42,
+    "stage": "stage3",
+    "notes": "Stage 3 research framework for local smoke validation and future GPU training"
+  },
+  "dataset": {
+    "name": "unsw_nb15",
+    "raw_root": "data/raw",
+    "processed_root": "data/stage3/processed",
+    "cache_enabled": true,
+    "force_refresh": false,
+    "smoke_max_rows": 4096,
+    "train_size": 0.6,
+    "val_size": 0.2,
+    "test_size": 0.2,
+    "normal_label": 0,
+    "label_column": "label",
+    "label_column_candidates": [
+      "label",
+      "Label",
+      " Label"
+    ],
+    "attack_column_candidates": [
+      "attack_cat",
+      "attack",
+      "Attack",
+      " Label"
+    ],
+    "drop_columns": [
+      "id"
+    ],
+    "synthetic_fallback_rows": 4096,
+    "random_state": 42,
+    "datasets": {
+      "unsw_nb15": {
+        "file_patterns": [
+          "UNSW_NB15_training-set.csv",
+          "UNSW_NB15_testing-set.csv",
+          "UNSW_NB15.csv"
+        ],
+        "normal_tokens": [
+          "0",
+          "normal",
+          "benign"
+        ],
+        "label_column_candidates": [
+          "label",
+          "Label",
+          " Label"
+        ],
+        "attack_column_candidates": [
+          "attack_cat",
+          "attack",
+          "Attack"
+        ]
+      },
+      "cic_ids2017": {
+        "file_patterns": [
+          "**/*.csv"
+        ],
+        "normal_tokens": [
+          "BENIGN",
+          "benign",
+          "Normal",
+          "normal"
+        ],
+        "label_column_candidates": [
+          " Label",
+          "label",
+          "Label"
+        ],
+        "attack_column_candidates": [
+          " Label",
+          "label",
+          "Label"
+        ]
+      }
+    }
+  },
+  "model": {
+    "name": "enhanced_mlp_ae",
+    "checkpoint_metric": "val_loss"
+  },
+  "models": {
+    "enhanced_mlp_ae": {
+      "type": "enhanced_mlp_ae",
+      "hidden_dims": [
+        128,
+        64
+      ],
+      "latent_dim": 32,
+      "activation": "relu",
+      "dropout": 0.2,
+      "use_batchnorm": true,
+      "scoring": {
+        "method": "reconstruction"
+      }
+    },
+    "transformer_ae": {
+      "type": "transformer_ae",
+      "d_model": 64,
+      "nhead": 4,
+      "num_layers": 2,
+      "dim_feedforward": 128,
+      "latent_dim": 32,
+      "dropout": 0.1,
+      "scoring": {
+        "method": "reconstruction"
+      }
+    },
+    "vae": {
+      "type": "vae",
+      "hidden_dims": [
+        128,
+        64
+      ],
+      "latent_dim": 16,
+      "activation": "relu",
+      "dropout": 0.1,
+      "beta": 0.05,
+      "scoring": {
+        "method": "reconstruction"
+      }
+    },
+    "hybrid_ae": {
+      "type": "hybrid_ae",
+      "hidden_dims": [
+        128,
+        64
+      ],
+      "latent_dim": 32,
+      "activation": "relu",
+      "dropout": 0.2,
+      "use_batchnorm": true,
+      "scoring": {
+        "method": "hybrid",
+        "components": [
+          "reconstruction",
+          "latent_distance",
+          "density"
+        ],
+        "weights": {
+          "reconstruction": 0.5,
+          "latent_distance": 0.3,
+          "density": 0.2
+        }
+      }
+    }
+  },
+  "training": {
+    "device": "auto",
+    "epochs": 20,
+    "batch_size": 128,
+    "learning_rate": 0.001,
+    "weight_decay": 1e-05,
+    "optimizer": "adamw",
+    "scheduler": "plateau",
+    "scheduler_patience": 5,
+    "scheduler_factor": 0.5,
+    "early_stopping_patience": 10,
+    "min_delta": 0.0001,
+    "grad_clip_norm": 5.0,
+    "num_workers": 0,
+    "resume": false
+  },
+  "scoring": {
+    "batch_size": 512,
+    "covariance_regularization": 0.0001
+  },
+  "threshold": {
+    "primary_method": "pr_optimal",
+    "percentile": 95,
+    "methods": [
+      "percentile",
+      "f1_optimal",
+      "youden",
+      "pr_optimal"
+    ]
+  },
+  "evaluation": {
+    "positive_label": 1,
+    "save_component_plots": true
+  },
+  "outputs": {
+    "root": "outputs_stage3",
+    "run_group": "local_smoke_test",
+    "comparison_dir": "comparison",
+    "ablation_dir": "ablation",
+    "final_report_dir": "final_report"
+  },
+  "ablation": {
+    "variants": [
+      {
+        "name": "reconstruction_only",
+        "scoring_method": "reconstruction"
+      },
+      {
+        "name": "hybrid_full",
+        "scoring_method": "hybrid",
+        "hybrid_components": [
+          "reconstruction",
+          "latent_distance",
+          "density"
+        ]
+      },
+      {
+        "name": "hybrid_no_latent_distance",
+        "scoring_method": "hybrid",
+        "hybrid_components": [
+          "reconstruction",
+          "density"
+        ]
+      },
+      {
+        "name": "hybrid_no_density",
+        "scoring_method": "hybrid",
+        "hybrid_components": [
+          "reconstruction",
+          "latent_distance"
+        ]
+      }
+    ]
+  },
+  "cloud": {
+    "host": "qhdlink.lanyun.net",
+    "port": 44410,
+    "username": "root",
+    "project_root": "/root/traffic_anomaly_detection_stage3",
+    "data_root": "/root/traffic_anomaly_detection_stage3/data",
+    "outputs_root": "/root/traffic_anomaly_detection_stage3/outputs_stage3"
+  },
+  "_config_path": "D:\\zlx\\traffic_anomaly_detection\\config\\stage3\\base.yaml",
+  "_project_root": "D:\\zlx\\traffic_anomaly_detection"
+}

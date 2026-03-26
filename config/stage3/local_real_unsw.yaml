@@ -1,0 +1,58 @@
+experiment:
+  notes: "Local CPU real-data validation on official UNSW train/test split"
+
+dataset:
+  name: unsw_nb15
+  raw_root: data/raw_real/unsw_nb15
+  processed_root: data/stage3_real/processed
+  cache_enabled: true
+  force_refresh: true
+  use_official_split: true
+  official_val_fraction: 0.2
+  official_train_sample_size: 0
+  official_test_sample_size: 0
+  train_normal_max: 10000
+  val_sample_size: 4000
+  test_sample_size: 8000
+  random_state: 42
+  datasets:
+    unsw_nb15:
+      train_file: UNSW_NB15_training-set.csv
+      test_file: UNSW_NB15_testing-set.csv
+
+models:
+  enhanced_mlp_ae:
+    hidden_dims: [96, 48]
+    latent_dim: 24
+    dropout: 0.15
+  transformer_ae:
+    d_model: 32
+    nhead: 4
+    num_layers: 1
+    dim_feedforward: 96
+    latent_dim: 24
+    dropout: 0.1
+  vae:
+    hidden_dims: [96, 48]
+    latent_dim: 16
+    dropout: 0.1
+    beta: 0.05
+  hybrid_ae:
+    hidden_dims: [96, 48]
+    latent_dim: 24
+    dropout: 0.15
+
+training:
+  device: cpu
+  epochs: 15
+  batch_size: 128
+  learning_rate: 0.001
+  early_stopping_patience: 5
+  min_delta: 0.00005
+
+scoring:
+  batch_size: 512
+
+outputs:
+  root: outputs_stage3
+  run_group: local_realdata_validation/runs

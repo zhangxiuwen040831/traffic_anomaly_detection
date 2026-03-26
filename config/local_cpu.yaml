@@ -1,0 +1,24 @@
+
+dataset:
+  name: UNSW-NB15
+  url: "https://github.com/defcom17/UNSW_NB15/raw/master/UNSW_NB15_training-set.csv"
+  test_url: "https://github.com/defcom17/UNSW_NB15/raw/master/UNSW_NB15_testing-set.csv"
+
+preprocessing:
+  sample_size: 3000
+  normal_label: 0
+  test_size: 0.3
+  random_state: 42
+
+model:
+  type: mlp_autoencoder
+  hidden_dims: [32, 16, 8, 16, 32]
+  activation: relu
+  dropout: 0.1
+
+training:
+  batch_size: 32
+  epochs: 5
+  learning_rate: 0.001
+  optimizer: adam
+  loss: mse

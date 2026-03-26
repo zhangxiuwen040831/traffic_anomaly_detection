@@ -1,0 +1,14 @@
+[
+  {
+    "file": "D:\\zlx\\traffic_anomaly_detection\\data\\raw_real\\unsw_nb15\\UNSW_NB15_training-set.csv",
+    "status": "skipped",
+    "size_bytes": 32293018,
+    "source": "local_cache"
+  },
+  {
+    "file": "D:\\zlx\\traffic_anomaly_detection\\data\\raw_real\\unsw_nb15\\UNSW_NB15_testing-set.csv",
+    "status": "skipped",
+    "size_bytes": 15380800,
+    "source": "local_cache"
+  }
+]

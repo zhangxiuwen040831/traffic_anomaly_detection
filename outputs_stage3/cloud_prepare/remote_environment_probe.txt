@@ -1,0 +1,70 @@
+timestamp: 2026-03-26 09:06:23 +0800
+hostname: 87847bc470e6
+pwd: /root/lanyun-tmp/traffic_anomaly_detection
+
+[system]
+Linux 87847bc470e6 5.15.0-117-generic #127-Ubuntu SMP Fri Jul 5 20:13:28 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux
+
+[python]
+Python 3.10.12
+scripts/cloud/stage3_env_probe.sh: line 18: pip3: command not found
+scripts/cloud/stage3_env_probe.sh: line 18: pip: command not found
+pip_missing
+
+[cpu_memory_disk]
+80
+               total        used        free      shared  buff/cache   available
+Mem:           1.0Ti        65Gi       192Gi       1.5Gi       748Gi       934Gi
+Swap:             0B          0B          0B
+Filesystem                         Size  Used Avail Use% Mounted on
+overlay                             30G   92K   30G   1% /
+tmpfs                               64M     0   64M   0% /dev
+shm                                 60G     0   60G   0% /dev/shm
+/dev/mapper/ubuntu--vg-data--lv     11T  6.9T  3.5T  67% /etc/hosts
+:/data/private-storage/1686983     200G     0  200G   0% /root/lanyun-fs
+/dev/mapper/ubuntu--vg-ubuntu--lv  119G   41G   73G  36% /etc/network_turbo
+:/data/public-storage               46T   40T  5.5T  88% /root/lanyun-pub
+tmpfs                              504G   12K  504G   1% /proc/driver/nvidia
+tmpfs                              504G     0  504G   0% /proc/asound
+tmpfs                              504G     0  504G   0% /proc/acpi
+tmpfs                              504G     0  504G   0% /proc/scsi
+tmpfs                              504G     0  504G   0% /sys/firmware
+
+[cgroup_limits]
+cpu_limit_cores: 10.00
+memory_limit_gb: 120.00
+
+[gpu]
+Thu Mar 26 09:06:23 2026       
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 570.172.08             Driver Version: 570.172.08     CUDA Version: 12.8     |
+|-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   0  NVIDIA GeForce RTX 4090        On  |   00000000:13:00.0 Off |                  Off |
+| 32%   29C    P8             14W /  450W |       0MiB /  24564MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+                                                                                         
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+
+[tools]
+tmux: /usr/bin/tmux
+screen: /usr/bin/screen
+nohup: /usr/bin/nohup
+curl: /usr/bin/curl
+wget: /usr/bin/wget
+unzip: /usr/bin/unzip
+tar: /usr/bin/tar
+git: /usr/bin/git
+
+[torch]
+torch_probe_error: No module named 'torch'

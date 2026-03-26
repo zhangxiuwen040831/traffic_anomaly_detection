@@ -1,0 +1,85 @@
+{
+  "dataset_name": "unsw_nb15",
+  "raw_source": "official_train_test",
+  "used_files": [
+    "UNSW_NB15_training-set.csv",
+    "UNSW_NB15_testing-set.csv"
+  ],
+  "split_strategy": "official_train_test_with_train_validation_split",
+  "label_column": "label",
+  "attack_column": "attack_cat",
+  "normal_label": 0,
+  "input_dim": 42,
+  "train_size": 10000,
+  "train_normal_size": 10000,
+  "val_size": 4000,
+  "test_size": 8000,
+  "train_label_distribution": {
+    "normal": 10000,
+    "anomaly": 0
+  },
+  "val_label_distribution": {
+    "normal": 1277,
+    "anomaly": 2723
+  },
+  "test_label_distribution": {
+    "normal": 3595,
+    "anomaly": 4405
+  },
+  "preprocessing": {
+    "categorical_columns": [
+      "proto",
+      "service",
+      "state"
+    ],
+    "numerical_columns": [
+      "dur",
+      "spkts",
+      "dpkts",
+      "sbytes",
+      "dbytes",
+      "rate",
+      "sttl",
+      "dttl",
+      "sload",
+      "dload",
+      "sloss",
+      "dloss",
+      "sinpkt",
+      "dinpkt",
+      "sjit",
+      "djit",
+      "swin",
+      "stcpb",
+      "dtcpb",
+      "dwin",
+      "tcprtt",
+      "synack",
+      "ackdat",
+      "smean",
+      "dmean",
+      "trans_depth",
+      "response_body_len",
+      "ct_srv_src",
+      "ct_state_ttl",
+      "ct_dst_ltm",
+      "ct_src_dport_ltm",
+      "ct_dst_sport_ltm",
+      "ct_dst_src_ltm",
+      "is_ftp_login",
+      "ct_ftp_cmd",
+      "ct_flw_http_mthd",
+      "ct_src_ltm",
+      "ct_srv_dst",
+      "is_sm_ips_ports"
+    ],
+    "feature_count": 42,
+    "scaler_mean_preview": [
+      1.0091031627811018,
+      30.9212,
+      38.2837,
+      4089.662,
+      31193.2866
+    ]
+  }
+}

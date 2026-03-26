@@ -1,0 +1,5 @@
+model_name,scoring_method,f1,precision,recall,roc_auc,pr_auc,threshold_method,run_dir
+hybrid_ae,reconstruction,0.7967479674796748,0.7141057934508817,0.9010215664018161,0.8283476072676296,0.8272913907661437,pr_optimal,D:\zlx\traffic_anomaly_detection\outputs_stage3\local_realdata_validation\ablation\unsw_nb15_hybrid_ae_reconstruction_only
+hybrid_ae,hybrid,0.7810233287590669,0.6872520269104709,0.9044267877412032,0.789021010705056,0.7886276953181134,pr_optimal,D:\zlx\traffic_anomaly_detection\outputs_stage3\local_realdata_validation\ablation\unsw_nb15_hybrid_ae_hybrid_full
+hybrid_ae,hybrid,0.784581370758435,0.6803934644881627,0.9264472190692395,0.8089577054775597,0.8091059889347821,pr_optimal,D:\zlx\traffic_anomaly_detection\outputs_stage3\local_realdata_validation\ablation\unsw_nb15_hybrid_ae_hybrid_no_latent_distance
+hybrid_ae,hybrid,0.778867206092337,0.670655737704918,0.9287173666288309,0.8018373987076894,0.8012108494937416,pr_optimal,D:\zlx\traffic_anomaly_detection\outputs_stage3\local_realdata_validation\ablation\unsw_nb15_hybrid_ae_hybrid_no_density

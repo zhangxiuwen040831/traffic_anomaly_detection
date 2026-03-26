@@ -1,0 +1,80 @@
+{
+  "dataset_name": "unsw_nb15",
+  "raw_source": "synthetic_fallback",
+  "used_files": [],
+  "label_column": "label",
+  "attack_column": "",
+  "normal_label": 0,
+  "input_dim": 42,
+  "train_size": 2457,
+  "train_normal_size": 1597,
+  "val_size": 819,
+  "test_size": 820,
+  "train_label_distribution": {
+    "normal": 1597,
+    "anomaly": 860
+  },
+  "val_label_distribution": {
+    "normal": 532,
+    "anomaly": 287
+  },
+  "test_label_distribution": {
+    "normal": 533,
+    "anomaly": 287
+  },
+  "preprocessing": {
+    "categorical_columns": [],
+    "numerical_columns": [
+      "feature_0",
+      "feature_1",
+      "feature_2",
+      "feature_3",
+      "feature_4",
+      "feature_5",
+      "feature_6",
+      "feature_7",
+      "feature_8",
+      "feature_9",
+      "feature_10",
+      "feature_11",
+      "feature_12",
+      "feature_13",
+      "feature_14",
+      "feature_15",
+      "feature_16",
+      "feature_17",
+      "feature_18",
+      "feature_19",
+      "feature_20",
+      "feature_21",
+      "feature_22",
+      "feature_23",
+      "feature_24",
+      "feature_25",
+      "feature_26",
+      "feature_27",
+      "feature_28",
+      "feature_29",
+      "feature_30",
+      "feature_31",
+      "feature_32",
+      "feature_33",
+      "feature_34",
+      "feature_35",
+      "feature_36",
+      "feature_37",
+      "feature_38",
+      "feature_39",
+      "feature_40",
+      "feature_41"
+    ],
+    "feature_count": 42,
+    "scaler_mean_preview": [
+      -0.05122941165140704,
+      -0.010743374324997407,
+      -0.049006296813380264,
+      -0.010632309018335093,
+      -0.01093843264354955
+    ]
+  }
+}

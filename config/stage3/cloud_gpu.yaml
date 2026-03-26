@@ -1,0 +1,15 @@
+dataset:
+  smoke_max_rows: 0
+  force_refresh: false
+
+training:
+  device: auto
+  epochs: 120
+  batch_size: 256
+  learning_rate: 0.0005
+  early_stopping_patience: 15
+  resume: true
+
+outputs:
+  root: outputs_stage3
+  run_group: future_gpu_plan

@@ -1,0 +1,22 @@
+input_dim: 36
+model_config:
+  activation: relu
+  dropout: 0.2
+  hidden_dims:
+  - 128
+  - 64
+  latent_dim: 32
+  scoring:
+    components:
+    - reconstruction
+    - latent_distance
+    - density
+    method: hybrid
+    weights:
+      density: 0.2
+      latent_distance: 0.3
+      reconstruction: 0.5
+  type: enhanced_mlp_ae
+  use_batchnorm: true
+model_name: enhanced_mlp_ae
+model_parameters: 30916

@@ -1,0 +1,42 @@
+{
+  "train_shape": [
+    175341,
+    45
+  ],
+  "test_shape": [
+    82332,
+    45
+  ],
+  "train_label_distribution": {
+    "1": 119341,
+    "0": 56000
+  },
+  "test_label_distribution": {
+    "1": 45332,
+    "0": 37000
+  },
+  "train_attack_distribution_top10": {
+    "Normal": 56000,
+    "Generic": 40000,
+    "Exploits": 33393,
+    "Fuzzers": 18184,
+    "DoS": 12264,
+    "Reconnaissance": 10491,
+    "Analysis": 2000,
+    "Backdoor": 1746,
+    "Shellcode": 1133,
+    "Worms": 130
+  },
+  "test_attack_distribution_top10": {
+    "Normal": 37000,
+    "Generic": 18871,
+    "Exploits": 11132,
+    "Fuzzers": 6062,
+    "DoS": 4089,
+    "Reconnaissance": 3496,
+    "Analysis": 677,
+    "Backdoor": 583,
+    "Shellcode": 378,
+    "Worms": 44
+  }
+}

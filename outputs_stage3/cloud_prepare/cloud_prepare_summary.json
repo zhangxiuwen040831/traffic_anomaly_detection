@@ -1,0 +1,46 @@
+{
+  "remote_host": "qhdlink.lanyun.net",
+  "remote_port": 38146,
+  "remote_project_root": "/root/lanyun-tmp/traffic_anomaly_detection",
+  "bundle_size_bytes": 126405,
+  "bundle_path": "D:\\zlx\\traffic_anomaly_detection\\outputs_stage3\\cloud_prepare\\stage3_source_bundle.tar.gz",
+  "local_probe_copy": "D:\\zlx\\traffic_anomaly_detection\\outputs_stage3\\cloud_prepare\\remote_environment_probe.txt",
+  "commands": [
+    {
+      "command": "mkdir -p /root/lanyun-tmp/traffic_anomaly_detection",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "cd /root/lanyun-tmp/traffic_anomaly_detection && tar -xzf stage3_source_bundle.tar.gz && rm -f stage3_source_bundle.tar.gz",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "cd /root/lanyun-tmp/traffic_anomaly_detection && chmod +x scripts/cloud/*.sh",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": "cd /root/lanyun-tmp/traffic_anomaly_detection && bash scripts/cloud/stage3_prepare_layout.sh /root/lanyun-tmp/traffic_anomaly_detection",
+      "exit_code": 0,
+      "stdout": "Prepared layout under /root/lanyun-tmp/traffic_anomaly_detection\n",
+      "stderr": ""
+    },
+    {
+      "command": "cd /root/lanyun-tmp/traffic_anomaly_detection && bash scripts/cloud/stage3_env_probe.sh outputs_stage3/cloud_prepare/reports",
+      "exit_code": 0,
+      "stdout": "timestamp: 2026-03-26 09:06:23 +0800\nhostname: 87847bc470e6\npwd: /root/lanyun-tmp/traffic_anomaly_detection\n\n[system]\nLinux 87847bc470e6 5.15.0-117-generic #127-Ubuntu SMP Fri Jul 5 20:13:28 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux\n\n[python]\nPython 3.10.12\nscripts/cloud/stage3_env_probe.sh: line 18: pip3: command not found\nscripts/cloud/stage3_env_probe.sh: line 18: pip: command not found\npip_missing\n\n[cpu_memory_disk]\n80\n               total        used        free      shared  buff/cache   available\nMem:           1.0Ti        65Gi       192Gi       1.5Gi       748Gi       934Gi\nSwap:             0B          0B          0B\nFilesystem                         Size  Used Avail Use% Mounted on\noverlay                             30G   92K   30G   1% /\ntmpfs                               64M     0   64M   0% /dev\nshm                                 60G     0   60G   0% /dev/shm\n/dev/mapper/ubuntu--vg-data--lv     11T  6.9T  3.5T  67% /etc/hosts\n:/data/private-storage/1686983     200G     0  200G   0% /root/lanyun-fs\n/dev/mapper/ubuntu--vg-ubuntu--lv  119G   41G   73G  36% /etc/network_turbo\n:/data/public-storage               46T   40T  5.5T  88% /root/lanyun-pub\ntmpfs                              504G   12K  504G   1% /proc/driver/nvidia\ntmpfs                              504G     0  504G   0% /proc/asound\ntmpfs                              504G     0  504G   0% /proc/acpi\ntmpfs                              504G     0  504G   0% /proc/scsi\ntmpfs                              504G     0  504G   0% /sys/firmware\n\n[cgroup_limits]\ncpu_limit_cores: 10.00\nmemory_limit_gb: 120.00\n\n[gpu]\nThu Mar 26 09:06:23 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 570.172.08             Driver Version: 570.172.08     CUDA Version: 12.8     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4090        On  |   00000000:13:00.0 Off |                  Off |\n| 32%   29C    P8             14W /  450W |       0MiB /  24564MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+\n\n[tools]\ntmux: /usr/bin/tmux\nscreen: /usr/bin/screen\nnohup: /usr/bin/nohup\ncurl: /usr/bin/curl\nwget: /usr/bin/wget\nunzip: /usr/bin/unzip\ntar: /usr/bin/tar\ngit: /usr/bin/git\n\n[torch]\ntorch_probe_error: No module named 'torch'\n",
+      "stderr": ""
+    },
+    {
+      "command": "cd /root/lanyun-tmp/traffic_anomaly_detection && find outputs_stage3 -maxdepth 3 -type d | sort",
+      "exit_code": 0,
+      "stdout": "outputs_stage3\noutputs_stage3/cloud_prepare\noutputs_stage3/cloud_prepare/checkpoints\noutputs_stage3/cloud_prepare/figures\noutputs_stage3/cloud_prepare/logs\noutputs_stage3/cloud_prepare/reports\noutputs_stage3/comparison\noutputs_stage3/final_report\noutputs_stage3/future_gpu_plan\noutputs_stage3/future_gpu_plan/checkpoints\noutputs_stage3/future_gpu_plan/figures\noutputs_stage3/future_gpu_plan/logs\noutputs_stage3/future_gpu_plan/reports\n",
+      "stderr": ""
+    }
+  ]
+}

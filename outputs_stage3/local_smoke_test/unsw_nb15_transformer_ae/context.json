@@ -1,0 +1,138 @@
+{
+  "dataset_name": "unsw_nb15",
+  "model_name": "transformer_ae",
+  "model_parameters": 12177,
+  "input_dim": 40,
+  "scoring_method": "reconstruction",
+  "primary_threshold_method": "pr_optimal",
+  "training_summary": {
+    "device": "cpu",
+    "history": [
+      {
+        "epoch": 1,
+        "train_loss": 0.40703658594025505,
+        "val_loss": 0.13950876891613007,
+        "train_reconstruction_loss": 0.40703658594025505,
+        "val_reconstruction_loss": 0.13950876891613007,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 2,
+        "train_loss": 0.10674541691939037,
+        "val_loss": 0.044693548853198685,
+        "train_reconstruction_loss": 0.10674541691939037,
+        "val_reconstruction_loss": 0.044693548853198685,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 3,
+        "train_loss": 0.06834133962790172,
+        "val_loss": 0.025411767574648064,
+        "train_reconstruction_loss": 0.06834133962790172,
+        "val_reconstruction_loss": 0.025411767574648064,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      },
+      {
+        "epoch": 4,
+        "train_loss": 0.05037991785340839,
+        "val_loss": 0.017769334682573874,
+        "train_reconstruction_loss": 0.05037991785340839,
+        "val_reconstruction_loss": 0.017769334682573874,
+        "train_kl_loss": 0.0,
+        "val_kl_loss": 0.0,
+        "learning_rate": 0.001
+      }
+    ],
+    "best_epoch": 4,
+    "best_val_loss": 0.017769334682573874,
+    "best_checkpoint": "D:\\zlx\\traffic_anomaly_detection\\outputs_stage3\\local_smoke_test\\unsw_nb15_transformer_ae\\checkpoints\\best.ckpt",
+    "last_checkpoint": "D:\\zlx\\traffic_anomaly_detection\\outputs_stage3\\local_smoke_test\\unsw_nb15_transformer_ae\\checkpoints\\last.ckpt"
+  },
+  "dataset_metadata": {
+    "dataset_name": "unsw_nb15",
+    "raw_source": "local_raw",
+    "used_files": [
+      "UNSW_NB15_training-set.csv",
+      "UNSW_NB15_testing-set.csv"
+    ],
+    "label_column": "label",
+    "attack_column": "",
+    "normal_label": 0,
+    "input_dim": 40,
+    "train_size": 1800,
+    "train_normal_size": 1092,
+    "val_size": 600,
+    "test_size": 600,
+    "train_label_distribution": {
+      "normal": 1092,
+      "anomaly": 708
+    },
+    "val_label_distribution": {
+      "normal": 364,
+      "anomaly": 236
+    },
+    "test_label_distribution": {
+      "normal": 364,
+      "anomaly": 236
+    },
+    "preprocessing": {
+      "categorical_columns": [],
+      "numerical_columns": [
+        "feature_0",
+        "feature_1",
+        "feature_2",
+        "feature_3",
+        "feature_4",
+        "feature_5",
+        "feature_6",
+        "feature_7",
+        "feature_8",
+        "feature_9",
+        "feature_10",
+        "feature_11",
+        "feature_12",
+        "feature_13",
+        "feature_14",
+        "feature_15",
+        "feature_16",
+        "feature_17",
+        "feature_18",
+        "feature_19",
+        "feature_20",
+        "feature_21",
+        "feature_22",
+        "feature_23",
+        "feature_24",
+        "feature_25",
+        "feature_26",
+        "feature_27",
+        "feature_28",
+        "feature_29",
+        "feature_30",
+        "feature_31",
+        "feature_32",
+        "feature_33",
+        "feature_34",
+        "feature_35",
+        "feature_36",
+        "feature_37",
+        "feature_38",
+        "feature_39"
+      ],
+      "feature_count": 40,
+      "scaler_mean_preview": [
+        -0.0005348520707373162,
+        0.011675483627106667,
+        -0.022863639752088872,
+        -0.01400084476229298,
+        -0.0018975073437551002
+      ]
+    }
+  }
+}
